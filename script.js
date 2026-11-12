@@ -4,7 +4,7 @@
    or update GEOJSON_PATH below)
    ============================================================ */
 
-const GEOJSON_PATH = "EFAP_PCI.geojson";
+const GEOJSON_PATH = "https://pub-e3668b5d87fe4c589c6bc9760e52b0d1.r2.dev/EFAP_PCI.geojson";
 
 /* ---------------------------------------------------------------
    Simplified 4-color display scheme (used for map lines, the
