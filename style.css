@@ -1,0 +1,213 @@
+:root{
+  --navy:#0b1f3a;
+  --navy-light:#13294f;
+  --bg:#eef1f5;
+  --card-bg:#ffffff;
+  --text-dark:#0b1f3a;
+  --text-muted:#5b6b82;
+  --border:#e1e6ec;
+
+  --c-good:#2e7d32;
+  --c-satisfactory:#8bc34a;
+  --c-fair:#ffeb3b;
+  --c-poor:#ff9800;
+  --c-verypoor:#f4441f;
+  --c-serious:#d32f2f;
+  --c-failed:#6a1b3d;
+}
+
+*{box-sizing:border-box;}
+html, body{
+  height:100%;
+  margin:0;
+  overflow:hidden; /* whole page never scrolls */
+}
+body{
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text-dark);
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== Navbar (fixed height, one line, no scroll) ===== */
+.navbar{
+  background:var(--navy);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:6px 10px;
+  flex:0 0 auto;
+  gap:6px;
+  flex-wrap:nowrap;
+  overflow:hidden;
+}
+.brand{display:flex; align-items:center; gap:6px; flex-shrink:0;}
+.brand-icon{font-size:17px;}
+.brand-text h1{margin:0; font-size:12px; white-space:nowrap;}
+.brand-text p{display:none;}
+
+.filters{
+  display:flex;
+  gap:4px;
+  flex-wrap:nowrap;
+  flex:1 1 auto;
+  min-width:0;
+  justify-content:flex-end;
+}
+.filter-box{
+  background:var(--navy-light);
+  border-radius:5px;
+  padding:2px 6px;
+  min-width:0;
+  flex:1 1 0;
+  max-width:145px;
+}
+.filter-box label{
+  display:block;
+  font-size:7px;
+  color:#a9b6cc;
+  margin-bottom:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.filter-box select,
+.filter-box input[type="range"]{
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:9px;
+  width:100%;
+  outline:none;
+}
+.filter-box select option{color:#000;}
+#pciSliderValue, #widthSliderValue{font-size:7px; color:#cfd9ea; white-space:nowrap;}
+
+.reset-btn{
+  flex-shrink:0;
+  background:var(--navy-light);
+  color:#fff;
+  border:1px solid #2a3f66;
+  border-radius:5px;
+  padding:0 8px;
+  font-size:11px;
+  cursor:pointer;
+  height:30px;
+  line-height:1;
+}
+.reset-btn:hover{background:#1c355e;}
+
+/* ===== Layout Grid: fills remaining viewport height, page itself never scrolls ===== */
+.dashboard-grid{
+  flex:1 1 auto;
+  min-height:0;
+  display:grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap:12px;
+  padding:12px;
+  overflow:hidden;
+}
+
+.left-col, .right-col{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  min-height:0;
+  overflow-y:auto;
+  padding-right:2px;
+}
+
+.two-col{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.card{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px;
+  flex-shrink:0;
+}
+.card h3{
+  margin:0 0 10px 0;
+  font-size:14px;
+  color:var(--navy);
+}
+
+.kpi-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.kpi-icon{
+  background:#e8f0fe;
+  color:var(--navy);
+  font-size:22px;
+  width:46px; height:46px;
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+}
+.kpi-label{margin:0; font-size:11px; color:var(--text-muted);}
+.kpi-card h2{margin:2px 0 0 0; font-size:22px; color:var(--navy);}
+
+/* ===== Map: always fills the full column height, no separate scroll ===== */
+.map-col{
+  padding:0;
+  overflow:hidden;
+  min-height:0;
+  height:100%;
+}
+#map{
+  width:100%;
+  height:100%;
+}
+
+/* ===== Legend ===== */
+.legend-list{
+  list-style:none;
+  margin:0; padding:0;
+}
+.legend-list li{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:5px 0;
+  font-size:12px;
+  border-bottom:1px solid var(--border);
+}
+.legend-list li:last-child{border-bottom:none;}
+.legend-swatch{
+  display:inline-block;
+  width:11px; height:11px;
+  border-radius:50%;
+  margin-right:8px;
+}
+.legend-name{display:flex; align-items:center;}
+.legend-pct{color:var(--text-muted); font-weight:600;}
+
+/* ===== Info card ===== */
+.info-card p{font-size:12px; line-height:1.45; color:var(--text-muted);}
+.plain-list{font-size:12px; color:var(--text-muted); padding-left:16px;}
+.note-box{
+  background:#eef4ff;
+  border-left:4px solid #1565c0;
+  padding:8px 10px;
+  font-size:11px;
+  border-radius:6px;
+  color:#233;
+  margin-top:8px;
+}
+
+/* Leaflet popup tweak */
+.leaflet-popup-content{font-size:13px;}
+
+@media (max-width: 1100px){
+  html, body{ overflow:auto; height:auto; }
+  .dashboard-grid{grid-template-columns:1fr; overflow:visible;}
+  .left-col, .right-col{overflow:visible;}
+  .map-col{min-height:480px;}
+}

@@ -1,0 +1,6 @@
+pushd "\\Server\efap-ss\Video&Srt"
+python -m http.server 8000
+
+
+FOR VLC
+python efap_vlc_server.py
